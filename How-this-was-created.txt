@@ -1,0 +1,33 @@
+I USED THIS METHOD TO RUN RAILS 5.2.1
+From: https://medium.com/@relativkreativ/how-to-manage-multiple-rails-versions-bf5759d0823b
+
+
+I already had rbenv, bundler, and ruby installed.
+
+PREPARE DIRECTORY FOR RAILS VERSION 5.2.1
+
+The below creates a folder for ur app.
+Then create a gemfile with just the rails version i want.
+Then run bundle install to install the rails version
+    for bundler's use (instead of one global version).
+This also updates Gemfile with needed rails dependencies.
+
+$> cd /tmp/rails-apps
+$> mkdir my-first-app
+$> cd my-first-app
+$> echo "source 'https://rubygems.org'" > Gemfile
+$> echo "gem 'rails', '5.2.1'" >> Gemfile
+$> bundle install
+
+
+CREATE NEW RAILS APPLICATION:
+
+Using the rails version in the gemfile above, creates
+    the rails application drirectory structure. Using the
+    --force flag over-writes the above Gemfile creating above
+    new Gemfile with all the necessary dependencies for above
+    base application. Some suff is defaults (like sqlite)
+    needs to chg.
+    
+$> bundle exec rails new . --force --skip-bundle
+$> bundle update
