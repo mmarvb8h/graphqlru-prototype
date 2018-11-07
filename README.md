@@ -1,2 +1,2 @@
 # graphqlru-prototype
-prototype using graphql
+prototype using graphqlccc
