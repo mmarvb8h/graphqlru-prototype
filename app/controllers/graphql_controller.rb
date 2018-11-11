@@ -3,12 +3,20 @@ class GraphqlController < ApplicationController
     variables = ensure_hash(params[:variables])
     query = params[:query]
     operation_name = params[:operationName]
+    # I get current user from
+    # header token in the ApplicationController. Each individual
+    # graphql query/mutation will have to verify. This pattern will allow
+    # the signup mutation to ignore verification while the others
+    # enforce it.
     context = {
       # Query context goes here, for example:
-      # current_user: current_user,
+      authentication: current_authentication,
     }
     result = LibraryAppGraphqlSchema.execute(query, variables: variables, context: context, operation_name: operation_name)
     render json: result
+  rescue ArgumentError => e
+    # Handle authentication failures coming from graphql queries/mutations. 
+    render(json: {}, status: :unauthorized) if e.message == 'AuthenticationError'
   rescue => e
     raise e unless Rails.env.development?
     handle_error_in_development e

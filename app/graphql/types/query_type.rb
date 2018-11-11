@@ -3,11 +3,10 @@ module Types
     # Add root-level fields here.
     # They will be entry points for queries on your schema.
 
-    field :all_users, [Types::User], null: false,
+    field :all_users,
+      resolver: Resolvers::AllUsers,
       description: "Returns all users"
-    def all_users
-      ::User.all
-    end
+  
 
     # TODO: remove me
     # field :test_field, String, null: false,

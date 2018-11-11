@@ -13,4 +13,9 @@ class User < ApplicationRecord
     self.write_attribute(:auth_provider, hash_to_db[:provider_name])
     super(hash_to_db[:signin])
   end
+
+  def authenticate(signin:)
+    provider = ModelServices::Providers::InhomeAuthProvider.new
+    provider.authenticate(signin_data: signin, db_signin: self.auth_signin)
+  end
 end

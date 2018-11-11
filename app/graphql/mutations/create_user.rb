@@ -19,7 +19,7 @@ module Mutations
         {
           email: email,
           name: name,
-          auth_signin: signin.get_verification     
+          auth_signin: signin.get_verification_info  
         }
       )
       if user.save
