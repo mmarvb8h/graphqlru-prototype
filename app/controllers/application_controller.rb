@@ -13,12 +13,16 @@ class ApplicationController < ActionController::Base
 
   def verify_user
     # if we want to change the sign-in strategy, this is 
-    # the place to do it
+    # the place to do it.
+
+    # token passed in request headers is standard method of authentication.
+
     tok = request.headers['session-token']
     user_id = nil
-    if !tok.present?
+    unless tok.present?
       if Rails.env.development?
-        # For dev testing i may send a user id.
+        # For dev testing (example using graphiql tool) i may send a user id. The
+        # graphiql browser tool has no way of sending request header with token.
         user_id = id_verification
       end
     end

@@ -47,3 +47,8 @@ bower.json
 # Ignore node_modules
 node_modules/
 
+# Ignore settings for Rubymine
+.idea
+log
+tmp
+.rubocop.yml

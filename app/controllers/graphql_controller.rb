@@ -9,7 +9,7 @@ class GraphqlController < ApplicationController
     # the signup mutation to ignore verification while the others
     # enforce it.
     context = {
-      # Query context goes here, for example:
+      # Query context goes here:
       authentication: current_authentication,
     }
     result = LibraryAppGraphqlSchema.execute(query, variables: variables, context: context, operation_name: operation_name)
